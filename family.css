@@ -1,0 +1,17 @@
+pre{
+    font-size: 27px;
+}
+body{
+    background-image: url(fam.jpg);
+    background-repeat: repeat;
+}
+hr{ border-color: aquamarine;
+    color:blue;
+    height: 10px;
+    border-style: dotted;
+    border-top: 10px solid red;
+}
+img{
+    border-style: inset;
+    border:10px
+}

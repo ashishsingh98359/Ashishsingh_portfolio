@@ -1,0 +1,17 @@
+body{
+    background-image: url(3.jpg);
+    background-size: cover;
+}
+pre{
+    font-size: xx-large;
+    background-color: antiquewhite;
+}
+.a1{
+    margin-left: 50px;
+    margin-right: 70px;
+    margin-top: 0px;
+}
+td{
+    margin-right: 50px;
+    margin-left: 60px;
+}

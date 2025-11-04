@@ -1,0 +1,44 @@
+pre a{
+    text-decoration: none;
+    padding: 5px;
+    margin-left: 20px;
+}
+a:link{
+    color: chartreuse;
+}
+a:visited{
+    color: aqua;
+}
+a:hover{
+    color:white
+}
+h1{
+    color: antiquewhite;
+    text-decoration: double;
+    text-shadow: 8px;
+    
+}
+pre{text-decoration-color: brown;
+    border-style: none;
+    text-wrap:inherit;
+    text-justify: kashida;
+}
+body{
+    position: relative;
+    background-image: url(bg1.jpg);
+    background-size: cover;
+}
+table tr td img{
+    flex: content;
+    animation-fill-mode: forwards;
+    shape-outside:padding-box;
+    box-shadow: 15px;
+    text-shadow: 15px;
+
+}
+img{
+    border-image: round;
+    border: 10px;
+    border-color: blue;
+    image-orientation: flip;
+}
