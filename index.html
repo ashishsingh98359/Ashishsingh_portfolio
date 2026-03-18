@@ -1,64 +1,1207 @@
-<html>
-    <head>
-        <a name="skills"></a>
-        <link rel="stylesheet" href="pf.css">
-        <title>Portfolio</title>
-        <pre><hr></pre>
-    </head>
-    <body>
-        <h1>.Portfolio</h1>
-        <hr>
-        <div id="a"><table ><div id="b"><tr><td height="5px" clear="left" colspan="4" style="font-size: xx-large;">
-        <div style="margin-right: 50px;">
-        <pre style="border-color: aquamarine;border-style:dotted; text-align:center;margin-left:30px;margin-right:10px"><a href="about.htm" target="_blank" title="Click to see About"><b>About&nbsp;</b></a></pre>
-        <pre style="border-color: aquamarine;border-style:dotted; text-align:center;margin-left:30px;margin-right:10px"><a href="skills.htm" target="_blank" title="Click to see Skills"><b>Skills&nbsp;</b></a></pre>
-        <pre style="border-color: aquamarine;border-style:dotted; text-align:center;margin-left:30px;margin-right:10px"><a href="Hobby.htm" target="_blank" title="Click to see Hobby" ><b>Hobby</b></a></pre>
-        </td>
-        </tr></nav></div>
-        <tr><td>
-            <pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashish Kumar — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-            </pre>
-        </td></tr>
-        <tr><td style="width: 800px; height:300px;"><pre style="text-align: justify ;font-size:x-large;font-size:35px;text-wrap: initial;font-style: oblique;color:aquamarine">
-            Hello, I am Ashish Kumar, currently 
-            pursuing my B.Tech degree at <b>MIT   
-            Muzaffarpur</b>. I am in my first year, and 
-            this is my portfolio page. I expect to 
-            graduate in 2029.
-        </pre></td>
-        <td height="5px" colspan="3" style="text-align:right"><img src="p2.png" alt="" height="300px" width="305px" style="border-style:outset;border: 10px;border-image:round;border-color:bisque;margin-right:230px;"></td>
-        </tr>
-        <td><pre>
-            
-        </pre></td>
-        <td><pre>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: #1e1e2e;
+      --accent: #00ffc2;
+      --accent2: #0df346;
+      --accent3: #64b5f6;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --white: #ffffff;
+    }
 
-        </pre></td>
-    <tr><td><img src="p1.png" alt="" height="300px" width="305px" style="border-style:outset;border: 10px;border-style:none;border-color:bisque;margin-left:200px;image-orientation:flip"></td>
-    <td colspan="4" border:10px style="width: 800px; height:300px;white-space: nowrap;background-color:NONE;border-style:groove;border:10px"><pre style="text-align: right ; font-size:40px;text-align:justify;font-style:oblique;color:rgb(13, 227, 70)">
-    I want to introduced you all with my
-    skills: I know c++ language, i have 
-    knowledge about file-handling, 
-    Microsoft-office and many more you 
-    can see in<b><a href="#skills" title="Skills">Skills</a></b>.</pre></td>
-    <td><hr></td></tr>
-    <tr><td>
-        <pre>
+    html { scroll-behavior: smooth; }
 
-        </pre>
-    </td>
-    <td>
-        <pre>
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-        </pre>
-    </td>
-    <td>
-        <pre>
+    .cursor {
+      position: fixed; width: 12px; height: 12px;
+      background: var(--accent); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform .1s, background .2s;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px;
+      border: 1px solid var(--accent);
+      border-radius: 50%; pointer-events: none;
+      z-index: 9998; transform: translate(-50%, -50%);
+      transition: transform .25s cubic-bezier(.23,1,.32,1), opacity .2s;
+      opacity: 0.5;
+    }
 
-        </pre>
-    </td>
-    <tr><td style="text-align: left;margin: top 50px;">Copyright&copy; own by <b>Ashish Kumar</b></td></tr></tr></table></div>
-    </body>
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0; opacity: .25;
+    }
 
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(10,10,15,.85);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 18px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.1rem;
+      color: var(--accent); letter-spacing: -.02em;
+    }
+    .nav-links {
+      display: flex; gap: 8px; list-style: none;
+    }
+    .nav-links a {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      color: var(--muted); text-decoration: none;
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .nav-links a:hover {
+      color: var(--accent); border-color: var(--accent);
+      background: rgba(0,255,194,.05);
+    }
+
+    /* HERO */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 80px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .hero-tag {
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-tag::before {
+      content: ''; display: block;
+      width: 30px; height: 1px; background: var(--accent);
+    }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1; letter-spacing: -.04em;
+      color: var(--white);
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-sub {
+      font-size: .83rem; color: var(--muted);
+      margin-top: 20px; line-height: 1.9;
+      max-width: 440px;
+    }
+    .hero-cta {
+      margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block; padding: 12px 28px;
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer;
+      transition: all .25s; border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--bg);
+      border-color: var(--accent); font-weight: 700;
+    }
+    .btn-primary:hover { background: transparent; color: var(--accent); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-photo { position: relative; display: flex; justify-content: center; }
+    .photo-frame { position: relative; width: 300px; height: 360px; }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      display: block;
+      clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+      filter: grayscale(15%) contrast(1.05);
+    }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--surface), #1a1a2e);
+      clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; color: var(--muted);
+    }
+    .photo-border {
+      position: absolute; inset: -10px;
+      border: 1px solid var(--accent);
+      clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+      animation: borderPulse 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes borderPulse {
+      0%, 100% { opacity: .25; }
+      50% { opacity: .85; }
+    }
+    .photo-badge {
+      position: absolute; bottom: -18px; right: -18px;
+      background: var(--accent2); color: var(--bg);
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: 8px 14px;
+    }
+
+    .stats-row {
+      display: flex; gap: 0;
+      margin-top: 60px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .stat {
+      flex: 1; padding: 24px;
+      border-right: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: background .2s;
+    }
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--surface); }
+    .stat::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s;
+    }
+    .stat:hover::after { transform: scaleX(1); }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.9rem; font-weight: 800; color: var(--accent);
+    }
+    .stat-label { font-size: .68rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .1em; }
+
+    /* SECTIONS */
+    section { padding: 100px 0; }
+    .section-header { margin-bottom: 56px; }
+    .section-tag {
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; letter-spacing: -.03em;
+      color: var(--white); line-height: 1.1;
+    }
+    .section-title span { color: var(--accent); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .about-text p {
+      font-size: .85rem; line-height: 2;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .about-text strong { color: var(--text); }
+    .info-list { list-style: none; margin-top: 28px; }
+    .info-list li {
+      display: flex; gap: 14px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: .78rem;
+    }
+    .info-list .label { color: var(--accent); min-width: 100px; }
+    .info-list .val { color: var(--text); }
+
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item { padding: 0 0 36px 28px; position: relative; }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -4px; top: 6px; width: 9px; height: 9px;
+      background: var(--accent); border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .tl-year { font-size: .68rem; color: var(--accent); letter-spacing: .1em; margin-bottom: 6px; }
+    .tl-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); }
+    .tl-desc { font-size: .78rem; color: var(--muted); margin-top: 6px; line-height: 1.7; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .skill-card {
+      background: var(--surface); padding: 30px;
+      position: relative; overflow: hidden;
+      transition: background .2s;
+    }
+    .skill-card:hover { background: #16161f; }
+    .skill-card::before {
+      content: attr(data-num);
+      position: absolute; right: 16px; top: 10px;
+      font-family: 'Syne', sans-serif; font-size: 2.8rem;
+      font-weight: 800; color: var(--border);
+      line-height: 1; pointer-events: none;
+    }
+    .skill-icon {
+      width: 42px; height: 42px; margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); font-size: 1.3rem;
+    }
+    .skill-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .skill-desc { font-size: .76rem; color: var(--muted); line-height: 1.7; }
+    .skill-bar-wrap { margin-top: 16px; height: 2px; background: var(--border); overflow: hidden; }
+    .skill-bar {
+      height: 100%; background: var(--accent);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s cubic-bezier(.22,1,.36,1);
+    }
+
+    /* CONTACT */
+    .cta-box {
+      border: 1px solid var(--border); padding: 60px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0,255,194,.06), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800; color: var(--white); letter-spacing: -.04em;
+    }
+    .cta-title span { color: var(--accent); }
+    .cta-sub { font-size: .83rem; color: var(--muted); margin-top: 16px; }
+    .cta-actions { margin-top: 36px; display: flex; justify-content: center; gap: 14px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px; text-align: center;
+      font-size: .7rem; color: var(--muted); letter-spacing: .05em;
+    }
+    footer strong { color: var(--text); }
+
+    /* FADE ANIMS */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      animation: fadeUp .7s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .d1 { animation-delay: .08s; }
+    .d2 { animation-delay: .2s; }
+    .d3 { animation-delay: .32s; }
+    .d4 { animation-delay: .44s; }
+
+    @media (max-width: 768px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo { order: -1; }
+      .photo-frame { width: 220px; height: 270px; }
+      .stats-row { flex-wrap: wrap; }
+      .stat { flex: 1 1 50%; }
+      .cta-box { padding: 40px 20px; }
+      nav .inner { padding: 14px 20px; }
+      .wrapper { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <div class="inner">
+      <div class="nav-logo">AK_</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="wrapper">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-tag fade-up d1">B.Tech Student · 2025–2029</p>
+          <h1 class="hero-name fade-up d2">
+            Ashish<br><span>Kumar.</span>
+          </h1>
+          <p class="hero-sub fade-up d3">
+            First-year student at <strong style="color:var(--text)">MIT Muzaffarpur</strong>, building a strong foundation
+            in software engineering, problem solving, and modern computing.
+            Expected to graduate in <strong style="color:var(--text)">2029</strong>.
+          </p>
+          <div class="hero-cta fade-up d3">
+            <a href="#about" class="btn btn-primary">About me</a>
+            <a href="#skills" class="btn btn-ghost">View skills →</a>
+          </div>
+        </div>
+        <div class="hero-photo fade-up d2">
+          <div class="photo-frame">
+            <img src="p2.png" alt="Ashish Kumar"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-placeholder" style="display:none">👨‍💻</div>
+            <div class="photo-border"></div>
+          </div>
+          <div class="photo-badge">Class of 2029</div>
+        </div>
+      </div>
+
+      <div class="stats-row fade-up d4">
+        <div class="stat">
+          <div class="stat-num">1st</div>
+          <div class="stat-label">Year Student</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2029</div>
+          <div class="stat-label">Graduation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">C++</div>
+          <div class="stat-label">Core Language</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">MIT</div>
+          <div class="stat-label">Muzaffarpur</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrapper">
+      <div class="section-header">
+        <p class="section-tag">Who I am</p>
+        <h2 class="section-title">A little<br><span>about me.</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Hello! I'm <strong>Ashish Kumar</strong>, a first-year B.Tech student at
+            <strong>MIT Muzaffarpur</strong>. I'm passionate about technology and driven by
+            curiosity to build things that matter.
+          </p>
+          <p>
+            I have a growing interest in software development and I'm continuously sharpening
+            my skills in <strong>C++</strong>, data structures, and computer science fundamentals.
+            This portfolio is one of the first things I've built — and I'm just getting started.
+          </p>
+          <ul class="info-list">
+            <li><span class="label">Name</span><span class="val">Ashish Kumar</span></li>
+            <li><span class="label">College</span><span class="val">MIT Muzaffarpur</span></li>
+            <li><span class="label">Degree</span><span class="val">B.Tech (1st Year)</span></li>
+            <li><span class="label">Graduation</span><span class="val">2029 (Expected)</span></li>
+            <li><span class="label">Status</span><span class="val" style="color:var(--accent2)">● Open to opportunities</span></li>
+          </ul>
+        </div>
+        <div>
+          <img src="p1.png" alt="" style="width:100%;border:1px solid var(--border);margin-bottom:32px;display:block;"
+            onerror="this.style.display='none'">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="tl-year">2025 — Present</div>
+              <div class="tl-title">B.Tech at MIT Muzaffarpur</div>
+              <div class="tl-desc">Enrolled in Computer Science, studying core subjects and actively developing software engineering skills.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-year">2024</div>
+              <div class="tl-title">Started Learning C++</div>
+              <div class="tl-desc">Began programming with C++, exploring OOP, file handling, algorithms, and data structures.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-year">2024</div>
+              <div class="tl-title">Built First Portfolio</div>
+              <div class="tl-desc">Designed and coded this portfolio website from scratch to document my journey and showcase growth.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrapper">
+      <div class="section-header">
+        <p class="section-tag">What I know</p>
+        <h2 class="section-title">My <span>skills.</span></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-num="01">
+          <div class="skill-icon">⚡</div>
+          <div class="skill-name">C++ Programming</div>
+          <div class="skill-desc">Object-oriented programming, functions, loops, and structured problem-solving in C++.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.75"></div></div>
+        </div>
+        <div class="skill-card" data-num="02">
+          <div class="skill-icon">📁</div>
+          <div class="skill-name">File Handling</div>
+          <div class="skill-desc">Reading and writing data using C++ file streams — fstream, ifstream, and ofstream.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.65"></div></div>
+        </div>
+        <div class="skill-card" data-num="03">
+          <div class="skill-icon">📊</div>
+          <div class="skill-name">Microsoft Office</div>
+          <div class="skill-desc">Proficient in Word, Excel, and PowerPoint for documentation, data, and presentations.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.82"></div></div>
+        </div>
+        <div class="skill-card" data-num="04">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">HTML & CSS</div>
+          <div class="skill-desc">Building structured web pages and applying styles — this portfolio was built from scratch.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.55"></div></div>
+        </div>
+        <div class="skill-card" data-num="05">
+          <div class="skill-icon">🧠</div>
+          <div class="skill-name">Problem Solving</div>
+          <div class="skill-desc">Logical thinking, algorithm design, and breaking down complex problems systematically.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.70"></div></div>
+        </div>
+        <div class="skill-card" data-num="06">
+          <div class="skill-icon">🚀</div>
+          <div class="skill-name">Continuous Learning</div>
+          <div class="skill-desc">Constantly exploring new technologies, concepts, and frameworks in computer science.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.92"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrapper">
+      <div class="cta-box">
+        <h2 class="cta-title">Let's <span>connect.</span></h2>
+        <p class="cta-sub">Open to collaborations, learning opportunities, and conversations about tech &amp; ideas.</p>
+        <div class="cta-actions">
+          <a href="mailto:ashish@example.com" class="btn btn-primary">Say Hello →</a>
+          <a href="#about" class="btn btn-ghost">About Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Copyright &copy; 2025 <strong>Ashish Kumar</strong> &mdash; All rights reserved</p>
+    <p style="margin-top:8px;font-size:.62rem;opacity:.5">B.Tech Student &middot; MIT Muzaffarpur &middot; Class of 2029</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animateCursor() {
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      rx += (mx - rx) * .15; ry += (my - ry) * .15;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    })();
+    document.querySelectorAll('a, button, .skill-card, .stat, .nav-links a').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.2)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1.6)';
+        ring.style.opacity = '1';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.opacity = '0.5';
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // Skill bars via IntersectionObserver
+    const skillBars = document.querySelectorAll('.skill-bar');
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const w = e.target.getAttribute('data-width');
+          e.target.style.transform = `scaleX(${w})`;
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    skillBars.forEach(b => barObs.observe(b));
+
+    // General fade-up on scroll for sections
+    const fadeEls = document.querySelectorAll('.section-header, .about-grid, .skills-grid, .cta-box, .stats-row');
+    const fadeObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          fadeObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+      fadeObs.observe(el);
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashish Kumar — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: #1e1e2e;
+      --accent: #00ffc2;
+      --accent2: #0df346;
+      --accent3: #64b5f6;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed; width: 12px; height: 12px;
+      background: var(--accent); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform .1s, background .2s;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px;
+      border: 1px solid var(--accent);
+      border-radius: 50%; pointer-events: none;
+      z-index: 9998; transform: translate(-50%, -50%);
+      transition: transform .25s cubic-bezier(.23,1,.32,1), opacity .2s;
+      opacity: 0.5;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0; opacity: .25;
+    }
+
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(10,10,15,.85);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 18px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.1rem;
+      color: var(--accent); letter-spacing: -.02em;
+    }
+    .nav-links {
+      display: flex; gap: 8px; list-style: none;
+    }
+    .nav-links a {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      color: var(--muted); text-decoration: none;
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .nav-links a:hover {
+      color: var(--accent); border-color: var(--accent);
+      background: rgba(0,255,194,.05);
+    }
+
+    /* HERO */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 80px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .hero-tag {
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-tag::before {
+      content: ''; display: block;
+      width: 30px; height: 1px; background: var(--accent);
+    }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1; letter-spacing: -.04em;
+      color: var(--white);
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-sub {
+      font-size: .83rem; color: var(--muted);
+      margin-top: 20px; line-height: 1.9;
+      max-width: 440px;
+    }
+    .hero-cta {
+      margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block; padding: 12px 28px;
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer;
+      transition: all .25s; border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--bg);
+      border-color: var(--accent); font-weight: 700;
+    }
+    .btn-primary:hover { background: transparent; color: var(--accent); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-photo { position: relative; display: flex; justify-content: center; }
+    .photo-frame { position: relative; width: 300px; height: 360px; }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      display: block;
+      clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+      filter: grayscale(15%) contrast(1.05);
+    }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--surface), #1a1a2e);
+      clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; color: var(--muted);
+    }
+    .photo-border {
+      position: absolute; inset: -10px;
+      border: 1px solid var(--accent);
+      clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+      animation: borderPulse 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes borderPulse {
+      0%, 100% { opacity: .25; }
+      50% { opacity: .85; }
+    }
+    .photo-badge {
+      position: absolute; bottom: -18px; right: -18px;
+      background: var(--accent2); color: var(--bg);
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: 8px 14px;
+    }
+
+    .stats-row {
+      display: flex; gap: 0;
+      margin-top: 60px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .stat {
+      flex: 1; padding: 24px;
+      border-right: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: background .2s;
+    }
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--surface); }
+    .stat::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s;
+    }
+    .stat:hover::after { transform: scaleX(1); }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.9rem; font-weight: 800; color: var(--accent);
+    }
+    .stat-label { font-size: .68rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .1em; }
+
+    /* SECTIONS */
+    section { padding: 100px 0; }
+    .section-header { margin-bottom: 56px; }
+    .section-tag {
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; letter-spacing: -.03em;
+      color: var(--white); line-height: 1.1;
+    }
+    .section-title span { color: var(--accent); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .about-text p {
+      font-size: .85rem; line-height: 2;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .about-text strong { color: var(--text); }
+    .info-list { list-style: none; margin-top: 28px; }
+    .info-list li {
+      display: flex; gap: 14px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: .78rem;
+    }
+    .info-list .label { color: var(--accent); min-width: 100px; }
+    .info-list .val { color: var(--text); }
+
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item { padding: 0 0 36px 28px; position: relative; }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -4px; top: 6px; width: 9px; height: 9px;
+      background: var(--accent); border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .tl-year { font-size: .68rem; color: var(--accent); letter-spacing: .1em; margin-bottom: 6px; }
+    .tl-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); }
+    .tl-desc { font-size: .78rem; color: var(--muted); margin-top: 6px; line-height: 1.7; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .skill-card {
+      background: var(--surface); padding: 30px;
+      position: relative; overflow: hidden;
+      transition: background .2s;
+    }
+    .skill-card:hover { background: #16161f; }
+    .skill-card::before {
+      content: attr(data-num);
+      position: absolute; right: 16px; top: 10px;
+      font-family: 'Syne', sans-serif; font-size: 2.8rem;
+      font-weight: 800; color: var(--border);
+      line-height: 1; pointer-events: none;
+    }
+    .skill-icon {
+      width: 42px; height: 42px; margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); font-size: 1.3rem;
+    }
+    .skill-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .skill-desc { font-size: .76rem; color: var(--muted); line-height: 1.7; }
+    .skill-bar-wrap { margin-top: 16px; height: 2px; background: var(--border); overflow: hidden; }
+    .skill-bar {
+      height: 100%; background: var(--accent);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s cubic-bezier(.22,1,.36,1);
+    }
+
+    /* CONTACT */
+    .cta-box {
+      border: 1px solid var(--border); padding: 60px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0,255,194,.06), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800; color: var(--white); letter-spacing: -.04em;
+    }
+    .cta-title span { color: var(--accent); }
+    .cta-sub { font-size: .83rem; color: var(--muted); margin-top: 16px; }
+    .cta-actions { margin-top: 36px; display: flex; justify-content: center; gap: 14px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px; text-align: center;
+      font-size: .7rem; color: var(--muted); letter-spacing: .05em;
+    }
+    footer strong { color: var(--text); }
+
+    /* FADE ANIMS */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      animation: fadeUp .7s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .d1 { animation-delay: .08s; }
+    .d2 { animation-delay: .2s; }
+    .d3 { animation-delay: .32s; }
+    .d4 { animation-delay: .44s; }
+
+    @media (max-width: 768px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo { order: -1; }
+      .photo-frame { width: 220px; height: 270px; }
+      .stats-row { flex-wrap: wrap; }
+      .stat { flex: 1 1 50%; }
+      .cta-box { padding: 40px 20px; }
+      nav .inner { padding: 14px 20px; }
+      .wrapper { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <div class="inner">
+      <div class="nav-logo">AK_</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="wrapper">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-tag fade-up d1">B.Tech Student · 2025–2029</p>
+          <h1 class="hero-name fade-up d2">
+            Ashish<br><span>Kumar.</span>
+          </h1>
+          <p class="hero-sub fade-up d3">
+            First-year student at <strong style="color:var(--text)">MIT Muzaffarpur</strong>, building a strong foundation
+            in software engineering, problem solving, and modern computing.
+            Expected to graduate in <strong style="color:var(--text)">2029</strong>.
+          </p>
+          <div class="hero-cta fade-up d3">
+            <a href="#about" class="btn btn-primary">About me</a>
+            <a href="#skills" class="btn btn-ghost">View skills →</a>
+          </div>
+        </div>
+        <div class="hero-photo fade-up d2">
+          <div class="photo-frame">
+            <img src="p2.png" alt="Ashish Kumar"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-placeholder" style="display:none">👨‍💻</div>
+            <div class="photo-border"></div>
+          </div>
+          <div class="photo-badge">Class of 2029</div>
+        </div>
+      </div>
+
+      <div class="stats-row fade-up d4">
+        <div class="stat">
+          <div class="stat-num">1st</div>
+          <div class="stat-label">Year Student</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2029</div>
+          <div class="stat-label">Graduation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">C++</div>
+          <div class="stat-label">Core Language</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">MIT</div>
+          <div class="stat-label">Muzaffarpur</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrapper">
+      <div class="section-header">
+        <p class="section-tag">Who I am</p>
+        <h2 class="section-title">A little<br><span>about me.</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Hello! I'm <strong>Ashish Kumar</strong>, a first-year B.Tech student at
+            <strong>MIT Muzaffarpur</strong>. I'm passionate about technology and driven by
+            curiosity to build things that matter.
+          </p>
+          <p>
+            I have a growing interest in software development and I'm continuously sharpening
+            my skills in <strong>C++</strong>, data structures, and computer science fundamentals.
+            This portfolio is one of the first things I've built — and I'm just getting started.
+          </p>
+          <ul class="info-list">
+            <li><span class="label">Name</span><span class="val">Ashish Kumar</span></li>
+            <li><span class="label">College</span><span class="val">MIT Muzaffarpur</span></li>
+            <li><span class="label">Degree</span><span class="val">B.Tech (1st Year)</span></li>
+            <li><span class="label">Graduation</span><span class="val">2029 (Expected)</span></li>
+            <li><span class="label">Status</span><span class="val" style="color:var(--accent2)">● Open to opportunities</span></li>
+          </ul>
+        </div>
+        <div>
+          <img src="p1.png" alt="" style="width:100%;border:1px solid var(--border);margin-bottom:32px;display:block;"
+            onerror="this.style.display='none'">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="tl-year">2025 — Present</div>
+              <div class="tl-title">B.Tech at MIT Muzaffarpur</div>
+              <div class="tl-desc">Enrolled in Computer Science, studying core subjects and actively developing software engineering skills.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-year">2024</div>
+              <div class="tl-title">Started Learning C++</div>
+              <div class="tl-desc">Began programming with C++, exploring OOP, file handling, algorithms, and data structures.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-year">2024</div>
+              <div class="tl-title">Built First Portfolio</div>
+              <div class="tl-desc">Designed and coded this portfolio website from scratch to document my journey and showcase growth.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrapper">
+      <div class="section-header">
+        <p class="section-tag">What I know</p>
+        <h2 class="section-title">My <span>skills.</span></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-num="01">
+          <div class="skill-icon">⚡</div>
+          <div class="skill-name">C++ Programming</div>
+          <div class="skill-desc">Object-oriented programming, functions, loops, and structured problem-solving in C++.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.75"></div></div>
+        </div>
+        <div class="skill-card" data-num="02">
+          <div class="skill-icon">📁</div>
+          <div class="skill-name">File Handling</div>
+          <div class="skill-desc">Reading and writing data using C++ file streams — fstream, ifstream, and ofstream.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.65"></div></div>
+        </div>
+        <div class="skill-card" data-num="03">
+          <div class="skill-icon">📊</div>
+          <div class="skill-name">Microsoft Office</div>
+          <div class="skill-desc">Proficient in Word, Excel, and PowerPoint for documentation, data, and presentations.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.82"></div></div>
+        </div>
+        <div class="skill-card" data-num="04">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">HTML & CSS</div>
+          <div class="skill-desc">Building structured web pages and applying styles — this portfolio was built from scratch.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.55"></div></div>
+        </div>
+        <div class="skill-card" data-num="05">
+          <div class="skill-icon">🧠</div>
+          <div class="skill-name">Problem Solving</div>
+          <div class="skill-desc">Logical thinking, algorithm design, and breaking down complex problems systematically.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.70"></div></div>
+        </div>
+        <div class="skill-card" data-num="06">
+          <div class="skill-icon">🚀</div>
+          <div class="skill-name">Continuous Learning</div>
+          <div class="skill-desc">Constantly exploring new technologies, concepts, and frameworks in computer science.</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="0.92"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrapper">
+      <div class="cta-box">
+        <h2 class="cta-title">Let's <span>connect.</span></h2>
+        <p class="cta-sub">Open to collaborations, learning opportunities, and conversations about tech &amp; ideas.</p>
+        <div class="cta-actions">
+          <a href="mailto:ashish@example.com" class="btn btn-primary">Say Hello →</a>
+          <a href="#about" class="btn btn-ghost">About Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Copyright &copy; 2025 <strong>Ashish Kumar</strong> &mdash; All rights reserved</p>
+    <p style="margin-top:8px;font-size:.62rem;opacity:.5">B.Tech Student &middot; MIT Muzaffarpur &middot; Class of 2029</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animateCursor() {
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      rx += (mx - rx) * .15; ry += (my - ry) * .15;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    })();
+    document.querySelectorAll('a, button, .skill-card, .stat, .nav-links a').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.2)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1.6)';
+        ring.style.opacity = '1';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.opacity = '0.5';
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // Skill bars via IntersectionObserver
+    const skillBars = document.querySelectorAll('.skill-bar');
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const w = e.target.getAttribute('data-width');
+          e.target.style.transform = `scaleX(${w})`;
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    skillBars.forEach(b => barObs.observe(b));
+
+    // General fade-up on scroll for sections
+    const fadeEls = document.querySelectorAll('.section-header, .about-grid, .skills-grid, .cta-box, .stats-row');
+    const fadeObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          fadeObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+      fadeObs.observe(el);
+    });
+  </script>
+</body>
 </html>
